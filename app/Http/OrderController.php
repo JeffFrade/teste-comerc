@@ -72,6 +72,17 @@ class OrderController extends Controller
         }
     }
 
+    public function delete(int $id)
+    {
+        try {
+            $this->orderService->delete($id);
+
+            return $this->sendJsonSuccessResponse('Pedido excluído com sucesso!');
+        } catch (OrderNotFoundException $e) {
+            return $this->sendJsonErrorResponse($e);
+        }
+    }
+
     protected function toValidate(Request $request, bool $isUpdate = false)
     {
         $itemsField = $isUpdate ? 'nullable' : 'required';

@@ -65,6 +65,12 @@ class OrderService
         $this->storeItems($data['items'] ?? [], $id);
     }
 
+    public function delete(int $id)
+    {
+        $this->edit($id);
+        $this->orderRepository->delete($id);
+    }
+
     private function storeItems(array $items, int $idOrder)
     {
         if (count($items) > 0) {

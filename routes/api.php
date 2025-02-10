@@ -26,4 +26,5 @@ Route::group(['prefix' => 'orders'], function () {
     Route::post('/store', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('orders.edit');
     Route::put('/update/{id}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/delete/{id}', [OrderController::class, 'delete'])->name('orders.delete');
 });
