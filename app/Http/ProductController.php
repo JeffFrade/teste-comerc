@@ -28,4 +28,23 @@ class ProductController extends Controller
             return $this->sendJsonErrorResponse($e);
         }
     }
+
+    public function store(Request $request)
+    {
+        $params = $this->toValidate($request);
+        $product = $this->productService->store($params);
+
+        return $this->sendJsonSuccessResponse('Produto cadastrado com sucesso!', $product);
+    }
+
+    protected function toValidate(Request $request, bool $isUpdate = false)
+    {
+        $photoField = $isUpdate ? 'nullable' : 'required';
+
+        return $this->validate($request, [
+            'name' => 'required|max:75',
+            'price' => 'required|numeric',
+            'photo' => $photoField . '|file',
+        ]);
+    }
 }

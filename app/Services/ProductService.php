@@ -3,7 +3,10 @@
 namespace App\Services;
 
 use App\Exceptions\ProductNotFoundException;
+use App\Helpers\FileHelper;
 use App\Repositories\ProductRespository;
+use Carbon\Carbon;
+use Illuminate\Http\UploadedFile;
 
 class ProductService
 {
@@ -25,5 +28,31 @@ class ProductService
         }
 
         return $products;
+    }
+
+    public function store(array $data)
+    {
+        $data['photo'] = $this->storePhoto($data['photo']);
+
+        return $this->productRepository->create($data);
+    }
+
+    public function edit(int $id)
+    {
+        $product = $this->productRepository->findFirst('id', $id);
+
+        if (empty($product)) {
+            throw new ProductNotFoundException('Produto inexistente.');
+        }
+
+        return $product;
+    }
+
+    private function storePhoto(UploadedFile $file)
+    {
+        $filename = Carbon::now()->format('YmdHis-') . $file->getClientOriginalName();
+        $filename = FileHelper::writeArchive($file, $filename);
+        
+        return FileHelper::getArchiveUrl($filename);
     }
 }
