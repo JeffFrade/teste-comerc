@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\ClientController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function (Request $request) {
-    return response()->json(['Ok']);
+Route::group(['prefix' => 'clients'], function () {
+    Route::get('/', [ClientController::class, 'index'])->name('clients.index');
 });
