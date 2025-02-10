@@ -46,6 +46,14 @@ class ClientService
         return $client;
     }
 
+    public function update($data, $id)
+    {
+        $this->edit($id);
+        $data = $this->formatData($data);
+
+        $this->clientRepository->update($data, $id);
+    }
+
     private function formatData(array $data)
     {
         if (!empty($data['cep'] ?? '')) {

@@ -48,6 +48,18 @@ class ClientController extends Controller
         }
     }
 
+    public function update(Request $request, int $id)
+    {
+        try {
+            $params = $this->toValidate($request, $id);
+            $this->clientService->update($params, $id);
+
+            return $this->sendJsonSuccessResponse('Dados do cliente atualizados com sucesso!');
+        } catch (ClientNotFoundException $e) {
+            return $this->sendJsonErrorResponse($e);
+        }
+    }
+
     protected function toValidate(Request $request, ?int $id = null)
     {
         return $this->validate($request, [
