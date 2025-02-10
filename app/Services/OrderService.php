@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\OrderCreatedEvent;
 use App\Exceptions\OrderNotFoundException;
 use App\Repositories\OrderRepository;
 
@@ -40,7 +41,8 @@ class OrderService
 
         $this->storeItems($data['items'], $order->id);
 
-        // TODO: Dispatch e-mail.
+        event(new OrderCreatedEvent($order, $client));
+
 
         return $order;
     }
