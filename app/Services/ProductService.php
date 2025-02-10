@@ -24,7 +24,7 @@ class ProductService
         $products = $this->productRepository->index($search);
 
         if ($products->isEmpty()) {
-            throw new ProductNotFoundException('Não há produtos para os critérios informados.');
+            throw new ProductNotFoundException('Não há produtos para os critérios informados.', 404);
         }
 
         return $products;
@@ -42,7 +42,7 @@ class ProductService
         $product = $this->productRepository->findFirst('id', $id);
 
         if (empty($product)) {
-            throw new ProductNotFoundException('Produto inexistente.');
+            throw new ProductNotFoundException('Produto inexistente.', 404);
         }
 
         return $product;
