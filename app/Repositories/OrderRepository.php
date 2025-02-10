@@ -22,4 +22,11 @@ class OrderRepository extends AbstractRepository
 
         return $model->paginate();
     }
+
+    public function edit(int $id)
+    {
+        return $this->model->with('items')
+            ->where('id', $id)
+            ->first();
+    }
 }

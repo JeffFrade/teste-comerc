@@ -43,6 +43,17 @@ class OrderService
         return $order;
     }
 
+    public function edit(int $id)
+    {
+        $order = $this->orderRepository->edit($id);
+
+        if (empty($order)) {
+            throw new OrderNotFoundException('Pedido inexistente.');
+        }
+
+        return $order;
+    }
+
     private function storeItems(array $items, int $idOrder)
     {
         if (count($items) > 0) {
