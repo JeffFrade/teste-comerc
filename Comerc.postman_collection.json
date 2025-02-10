@@ -380,11 +380,11 @@
 				{
 					"name": "Orders Update",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id_client\": 1,\n\t\"items\": [\n\t\t{\n\t\t\t\"id_product\": 2,\n\t\t\t\"amount\": 10\n\t\t},\n\t\t{\n\t\t\t\"id_product\": 7,\n\t\t\t\"amount\": 5\n\t\t}\n\t]\n}",
+							"raw": "{\n\t\"id_client\": 12,\n\t\"items\": [\n\t\t{\n\t\t\t\"id_product\": 2,\n\t\t\t\"amount\": 10\n\t\t},\n\t\t{\n\t\t\t\"id_product\": 7,\n\t\t\t\"amount\": 5\n\t\t},\n\t\t{\n\t\t\t\"id_product\": 3,\n\t\t\t\"amount\": 1\n\t\t}\n\t]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -392,7 +392,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8000/api/orders/store",
+							"raw": "localhost:8000/api/orders/update/501",
 							"host": [
 								"localhost"
 							],
@@ -400,7 +400,8 @@
 							"path": [
 								"api",
 								"orders",
-								"store"
+								"update",
+								"501"
 							]
 						}
 					},
@@ -412,7 +413,17 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "localhost:8000/api/orders/delete/500",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"orders",
+								"delete",
+								"500"
+							]
 						}
 					},
 					"response": []
@@ -428,7 +439,7 @@
 	],
 	"variable": [
 		{
-			"id": "40b7ddd8-cbfa-4ef2-acbe-91a42c1916e3",
+			"id": "4d57f868-5a7f-4a91-94e6-a7c96bf3f6b0",
 			"key": "base_url",
 			"value": "localhost:8000",
 			"type": "string"
