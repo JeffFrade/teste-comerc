@@ -37,6 +37,17 @@ class ProductController extends Controller
         return $this->sendJsonSuccessResponse('Produto cadastrado com sucesso!', $product);
     }
 
+    public function edit(int $id)
+    {
+        try {
+            $product = $this->productService->edit($id);
+
+            return $this->sendJsonSuccessResponse('Dados do produto encontrados!', $product);
+        } catch (ProductNotFoundException $e) {
+            return $this->sendJsonErrorResponse($e);
+        }
+    }
+
     protected function toValidate(Request $request, bool $isUpdate = false)
     {
         $photoField = $isUpdate ? 'nullable' : 'required';
