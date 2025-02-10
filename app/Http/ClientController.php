@@ -60,6 +60,17 @@ class ClientController extends Controller
         }
     }
 
+    public function delete(int $id)
+    {
+        try {
+            $this->clientService->delete($id);
+
+            return $this->sendJsonSuccessResponse('Cliente excluído com sucesso!');
+        } catch (ClientNotFoundException $e) {
+            return $this->sendJsonErrorResponse($e);
+        }
+    }
+
     protected function toValidate(Request $request, ?int $id = null)
     {
         return $this->validate($request, [

@@ -54,6 +54,12 @@ class ClientService
         $this->clientRepository->update($data, $id);
     }
 
+    public function delete(int $id)
+    {
+        $this->edit($id);
+        $this->clientRepository->delete($id);
+    }
+
     private function formatData(array $data)
     {
         if (!empty($data['cep'] ?? '')) {
