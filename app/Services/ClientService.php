@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Exceptions\ClientNotFoundException;
+use App\Helpers\StringHelper;
 use App\Repositories\ClientRepository;
 
 class ClientService
@@ -25,5 +26,25 @@ class ClientService
         }
 
         return $clients;
+    }
+
+    public function store(array $data)
+    {
+        $data = $this->formatData($data);
+        
+        return $this->clientRepository->create($data);
+    }
+
+    private function formatData(array $data)
+    {
+        if (!empty($data['cep'] ?? '')) {
+            $data['cep'] = StringHelper::replaceRegex($data['cep'], '/[\D]/i', '');
+        }
+
+        if (!empty($data['phone'] ?? '')) {
+            $data['phone'] = StringHelper::replaceRegex($data['phone'], '/[\D]/i', '');
+        }
+
+        return $data;
     }
 }
