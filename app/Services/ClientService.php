@@ -22,7 +22,7 @@ class ClientService
         $clients = $this->clientRepository->index($search);
 
         if ($clients->isEmpty()) {
-            throw new ClientNotFoundException('Não há clientes para os critérios informados', 404);
+            throw new ClientNotFoundException('Não há clientes para os critérios informados.', 404);
         }
 
         return $clients;
