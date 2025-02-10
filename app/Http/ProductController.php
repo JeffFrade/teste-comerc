@@ -60,6 +60,17 @@ class ProductController extends Controller
         }
     }
 
+    public function delete(int $id)
+    {
+        try {
+            $this->productService->delete($id);
+
+            return $this->sendJsonSuccessResponse('Produto excluído com sucesso!');
+        } catch (ProductNotFoundException $e) {
+            return $this->sendJsonErrorResponse($e);
+        }
+    }
+
     protected function toValidate(Request $request, bool $isUpdate = false)
     {
         $photoField = $isUpdate ? 'nullable' : 'required';

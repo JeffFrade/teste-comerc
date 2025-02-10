@@ -59,6 +59,12 @@ class ProductService
         $this->productRepository->update($data, $id);
     }
 
+    public function delete(int $id)
+    {
+        $this->edit($id);
+        $this->productRepository->delete($id);
+    }
+
     private function storePhoto(UploadedFile $file)
     {
         $filename = Carbon::now()->format('YmdHis-') . $file->getClientOriginalName();
