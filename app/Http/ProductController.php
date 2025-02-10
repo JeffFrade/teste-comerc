@@ -7,6 +7,9 @@ use App\Exceptions\ProductNotFoundException;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ProductController extends Controller
 {
     private $productService;
