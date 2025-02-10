@@ -6,7 +6,6 @@ use App\Exceptions\ClientNotFoundException;
 use App\Models\Client;
 use App\Services\ClientService;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Pagination\Paginator;
 use Tests\TestCase;
 
 class ClientServiceTest extends TestCase
