@@ -13,4 +13,9 @@ class Order extends Model
     protected $fillable = [
         'id_client'
     ];
+
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class, 'id_order', 'id');
+    }
 }

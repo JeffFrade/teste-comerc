@@ -14,7 +14,7 @@ class OrderRepository extends AbstractRepository
 
     public function index(?int $idClient = null)
     {
-        $model = $this->model;
+        $model = $this->model->with('items');
 
         if (!is_null($idClient)) {
             $model = $model->where('id_client', $idClient);

@@ -3,7 +3,6 @@
 use App\Http\ClientController;
 use App\Http\ProductController;
 use App\Http\OrderController;
-use App\Http\OrderItemController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'clients'], function () {
@@ -24,8 +23,5 @@ Route::group(['prefix' => 'products'], function () {
 
 Route::group(['prefix' => 'orders'], function () {
     Route::get('/', [OrderController::class, 'index'])->name('orders.index');
-});
-
-Route::group(['prefix' => 'order-items'], function () {
-
+    Route::post('/store', [OrderController::class, 'store'])->name('orders.store');
 });
