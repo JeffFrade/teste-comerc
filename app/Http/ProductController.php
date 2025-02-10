@@ -48,6 +48,18 @@ class ProductController extends Controller
         }
     }
 
+    public function update(Request $request, int $id)
+    {
+        try {
+            $params = $this->toValidate($request, true);
+            $this->productService->update($params, $id);
+
+            return $this->sendJsonSuccessResponse('Dados do produto atualizados com sucesso!');
+        } catch (ProductNotFoundException $e) {
+            return $this->sendJsonErrorResponse($e);
+        }
+    }
+
     protected function toValidate(Request $request, bool $isUpdate = false)
     {
         $photoField = $isUpdate ? 'nullable' : 'required';

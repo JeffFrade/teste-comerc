@@ -48,6 +48,17 @@ class ProductService
         return $product;
     }
 
+    public function update(array $data, int $id)
+    {
+        $this->edit($id);
+        
+        if (!empty($data['photo'] ?? '')) {
+            $data['photo'] = $this->storePhoto($data['photo']);
+        }
+
+        $this->productRepository->update($data, $id);
+    }
+
     private function storePhoto(UploadedFile $file)
     {
         $filename = Carbon::now()->format('YmdHis-') . $file->getClientOriginalName();
