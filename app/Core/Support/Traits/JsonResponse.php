@@ -15,7 +15,7 @@ trait JsonResponse
     /**
      * @param string $message
      * @param mixed $data
-     * @param array $extra
+     * @param mixed $extra
      * @param int $status
      * @return mixed|\Illuminate\Http\JsonResponse
      */
@@ -33,7 +33,7 @@ trait JsonResponse
 
     /**
      * @param Throwable $e
-     * @param array $extra
+     * @param mixed $extra
      * @return mixed|\Illuminate\Http\JsonResponse
      */
     protected function sendJsonErrorResponse(Throwable $e, array $extra = [])

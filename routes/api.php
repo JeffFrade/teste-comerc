@@ -1,8 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\ClientController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function (Request $request) {
-    return response()->json(['Ok']);
+Route::group(['prefix' => 'clients'], function () {
+    Route::get('/', [ClientController::class, 'index'])->name('clients.index');
+    Route::post('/store', [ClientController::class, 'store'])->name('clients.store');
+    Route::get('/edit/{id}', [ClientController::class, 'edit'])->name('clients.edit');
+    Route::put('/update/{id}', [ClientController::class, 'update'])->name('clients.update');
+    Route::delete('/delete/{id}', [ClientController::class, 'delete'])->name('clients.delete');
 });
