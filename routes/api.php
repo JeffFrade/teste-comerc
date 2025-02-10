@@ -25,4 +25,5 @@ Route::group(['prefix' => 'orders'], function () {
     Route::get('/', [OrderController::class, 'index'])->name('orders.index');
     Route::post('/store', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::put('/update/{id}', [OrderController::class, 'update'])->name('orders.update');
 });

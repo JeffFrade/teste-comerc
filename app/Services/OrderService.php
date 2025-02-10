@@ -40,6 +40,8 @@ class OrderService
 
         $this->storeItems($data['items'], $order->id);
 
+        // TODO: Dispatch e-mail.
+
         return $order;
     }
 
@@ -52,6 +54,15 @@ class OrderService
         }
 
         return $order;
+    }
+
+    public function update(array $data, int $id)
+    {
+        $this->edit($id);
+
+        $this->orderRepository->update($data, $id);
+
+        $this->storeItems($data['items'] ?? [], $id);
     }
 
     private function storeItems(array $items, int $idOrder)

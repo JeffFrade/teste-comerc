@@ -55,6 +55,23 @@ class OrderController extends Controller
         }
     }
 
+    public function update(Request $request, int $id)
+    {
+        try {
+            $params = $this->toValidate($request, true);
+
+            $order = $this->orderService->update($params, $id);
+
+            return $this->sendJsonSuccessResponse('Dados do pedido atualizados com sucesso!', $order);
+        } catch (
+            ClientNotFoundException |
+            OrderNotFoundException | 
+            ProductNotFoundException $e
+        ) {
+            return $this->sendJsonErrorResponse($e);
+        }
+    }
+
     protected function toValidate(Request $request, bool $isUpdate = false)
     {
         $itemsField = $isUpdate ? 'nullable' : 'required';
