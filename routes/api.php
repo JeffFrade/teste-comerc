@@ -2,6 +2,7 @@
 
 use App\Http\ClientController;
 use App\Http\ProductController;
+use App\Http\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'clients'], function () {
@@ -18,4 +19,12 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/update/{id}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('/delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
+});
+
+Route::group(['prefix' => 'orders'], function () {
+    Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/store', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::put('/update/{id}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('/delete/{id}', [OrderController::class, 'delete'])->name('orders.delete');
 });
