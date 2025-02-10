@@ -37,6 +37,17 @@ class ClientController extends Controller
         return $this->sendJsonSuccessResponse('Cliente cadastrado com sucesso!', $client);
     }
 
+    public function edit(int $id)
+    {
+        try {
+            $client = $this->clientService->edit($id);
+
+            return $this->sendJsonSuccessResponse('Dados do cliente encontrados!', $client);
+        } catch (ClientNotFoundException $e) {
+            return $this->sendJsonErrorResponse($e);
+        }
+    }
+
     protected function toValidate(Request $request, ?int $id = null)
     {
         return $this->validate($request, [

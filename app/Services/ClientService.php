@@ -31,8 +31,19 @@ class ClientService
     public function store(array $data)
     {
         $data = $this->formatData($data);
-        
+
         return $this->clientRepository->create($data);
+    }
+
+    public function edit(int $id)
+    {
+        $client = $this->clientRepository->findFirst('id', $id);
+
+        if (empty($client)) {
+            throw new ClientNotFoundException('Cliente inexistente.', 404);
+        }
+
+        return $client;
     }
 
     private function formatData(array $data)
