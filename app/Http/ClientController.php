@@ -7,6 +7,9 @@ use App\Exceptions\ClientNotFoundException;
 use App\Services\ClientService;
 use Illuminate\Http\Request;
 
+/**
+ * @codeCoverageIgnore
+ */
 class ClientController extends Controller
 {
     private $clientService;

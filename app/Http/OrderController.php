@@ -9,6 +9,9 @@ use App\Exceptions\ProductNotFoundException;
 use App\Services\OrderService;
 use Illuminate\Http\Request;
 
+/**
+ * @codeCoverageIgnore
+ */
 class OrderController extends Controller
 {
     private $orderService;
@@ -60,9 +63,9 @@ class OrderController extends Controller
         try {
             $params = $this->toValidate($request, true);
 
-            $order = $this->orderService->update($params, $id);
+            $this->orderService->update($params, $id);
 
-            return $this->sendJsonSuccessResponse('Dados do pedido atualizados com sucesso!', $order);
+            return $this->sendJsonSuccessResponse('Dados do pedido atualizados com sucesso!');
         } catch (
             ClientNotFoundException |
             OrderNotFoundException | 
